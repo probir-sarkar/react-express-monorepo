@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 
-// Serve Static Files
+// Serve static files from the React frontend
 app.use(express.static(path.join(__dirname, "../../react/dist")));
 
 // Routes
@@ -25,7 +25,7 @@ app.get("/api/health", (req, res) => {
   res.send("OK");
 });
 
-// Catch-all route for serving the frontend and handling file fallback
+// Fallback for React Router (unmatched routes)
 app.get("*", (req, res) => {
   const filePath = path.join(__dirname, "../../react/dist", "index.html");
 
