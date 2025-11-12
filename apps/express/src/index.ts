@@ -25,6 +25,49 @@ app.get("/api/health", (req, res) => {
   res.send("OK");
 });
 
+const notes: { id: string; title: string; content: string }[] = [];
+
+// crud for notes
+app.post("/api/notes", (req, res) => {
+  const { title, content } = req.body;
+  const note = { id: crypto.randomUUID(), title, content };
+  notes.push(note);
+  res.status(201).json(note);
+});
+
+app.get("/api/notes", (req, res) => {
+  res.json(notes);
+});
+
+app.get("/api/notes/:id", (req, res) => {
+  const { id } = req.params;
+  const note = notes.find((note) => note.id === id);
+  res.json(note);
+});
+
+app.put("/api/notes/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+  const note = notes.find((note) => note.id === id);
+  if (!note) {
+    return res.status(404).json({ message: "Note not found" });
+  }
+  note.title = title;
+  note.content = content;
+
+  res.json(note);
+});
+
+app.delete("/api/notes/:id", (req, res) => {
+  const { id } = req.params;
+  const note = notes.find((note) => note.id === id);
+  if (!note) {
+    return res.status(404).json({ message: "Note not found" });
+  }
+  notes.splice(notes.indexOf(note), 1);
+  res.json({ message: "Note deleted" });
+});
+
 // Fallback for React Router (unmatched routes)
 app.get("*", (req, res) => {
   const filePath = path.join(__dirname, "../../react/dist", "index.html");
