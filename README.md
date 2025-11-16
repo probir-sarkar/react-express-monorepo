@@ -1,4 +1,4 @@
-# React 19 and Express Monorepo with pnpm
+# React and Express Monorepo with pnpm
 
 This repository demonstrates how to build and manage a **React 19 frontend** and an **Express.js backend** within a **monorepo** using [pnpm workspaces](https://pnpm.io/workspaces). The goal is to streamline the development process, allowing both applications to work together while maintaining separate environments and configurations, with the latest React features and automatic optimizations.
 
