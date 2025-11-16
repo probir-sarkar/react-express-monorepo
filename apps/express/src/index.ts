@@ -1,11 +1,9 @@
 import express from "express";
 import path from "path";
-import dotenv from "@dotenvx/dotenvx";
+
 import fs from "fs";
 
-dotenv.config({
-  path: path.join(__dirname, "../../../.env")
-});
+// dotenvx.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;

@@ -1,12 +1,12 @@
-# React and Express Monorepo with Turborepo
+# React and Express Monorepo with pnpm
 
-This repository demonstrates how to build and manage a **React frontend** and an **Express.js backend** within a **monorepo** using [Turborepo](https://turbo.build/). The goal is to streamline the development process, allowing both applications to work together while maintaining separate environments and configurations.
+This repository demonstrates how to build and manage a **React frontend** and an **Express.js backend** within a **monorepo** using [pnpm workspaces](https://pnpm.io/workspaces). The goal is to streamline the development process, allowing both applications to work together while maintaining separate environments and configurations.
 
 ## Features
 
 - **Monorepo Setup:** Both frontend (React) and backend (Express.js) applications are contained in a single repository, with separate environments and `package.json` files.
 - **Vite Proxy:** Seamlessly proxy API requests from the frontend to the backend for local development.
-- **Turborepo:** Simplifies the management of builds, linting, and running development servers for both applications with a single command.
+- **pnpm Workspaces:** Simplifies dependency management and running commands across packages with workspace filtering and parallel execution.
 - **Shared Environment Variables:** Uses [dotenvx](https://www.npmjs.com/package/dotenvx) to manage environment variables across both applications.
 - **Production-Ready Setup:** Serves static files from the backend and handles fallback routes for **React Router**.
 
@@ -45,7 +45,17 @@ Create a `.env` file in the root directory to manage global variables across the
 pnpm dev
 ```
 
-This will start both the frontend (Vite on port `5173`) and backend (Express on port `3000`).
+This will start both the frontend (Vite on port `5173`) and backend (Express on port `3000`) in parallel.
+
+For individual development:
+
+```bash
+# Start only the React frontend
+pnpm dev:react
+
+# Start only the Express backend
+pnpm dev:express
+```
 
 ### 5. Build for production:
 
