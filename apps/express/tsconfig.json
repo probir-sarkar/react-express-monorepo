@@ -1,19 +1,18 @@
 {
-    "compilerOptions": {
-      "target": "ESNext",
-      "module": "CommonJS",
-      "baseUrl": ".",
-      "paths": {
-        "@/*": ["src/*"]
-      },
-      "moduleResolution": "Node",
-      "outDir": "dist",
-      "importsNotUsedAsValues": "remove",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "nodenext",
+    "paths": {
+      "@/*": ["./src/*"]
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules"]
-  }
+    "moduleResolution": "nodenext",
+    "outDir": "dist",
+    "importsNotUsedAsValues": "remove",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

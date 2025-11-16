@@ -1,11 +1,7 @@
 import express from "express";
 import path from "path";
-import dotenv from "@dotenvx/dotenvx";
-import fs from "fs";
 
-dotenv.config({
-  path: path.join(__dirname, "../../../.env")
-});
+import fs from "fs";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,7 +22,7 @@ app.get("/api/health", (req, res) => {
 });
 
 // Fallback for React Router (unmatched routes)
-app.get("*", (req, res) => {
+app.use((req, res) => {
   const filePath = path.join(__dirname, "../../react/dist", "index.html");
 
   // Check if the file exists
