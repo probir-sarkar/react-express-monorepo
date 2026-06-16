@@ -32,3 +32,24 @@ steps:
 
 - script: pnpm build
   displayName: Build Application
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'apps/react/dist'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/react'
+  displayName: Stage React Artifact
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'apps/express/dist'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/express'
+  displayName: Stage Express Artifact
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'application'
+    publishLocation: 'Container'
+  displayName: Publish Artifact
