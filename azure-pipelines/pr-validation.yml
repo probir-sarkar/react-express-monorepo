@@ -1,0 +1,34 @@
+trigger: none
+
+pr:
+  branches:
+    include:
+      - release
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '22.x'
+  displayName: Install Node.js
+
+- script: |
+    corepack enable
+    corepack prepare pnpm@8.15.6 --activate
+  displayName: Setup pnpm
+
+- script: pnpm install --frozen-lockfile
+  displayName: Install Dependencies
+
+- script: pnpm lint
+  displayName: Run ESLint
+
+- script: pnpm test
+  displayName: Run Tests
+
+- script: pnpm build
+  displayName: Build Application
