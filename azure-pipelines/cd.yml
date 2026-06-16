@@ -1,0 +1,46 @@
+trigger: none
+
+stages:
+
+- stage: DEV
+  jobs:
+  - deployment: DeployDEV
+    environment: DEV
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Deploying to DEV"
+
+- stage: QA
+  dependsOn: DEV
+  jobs:
+  - deployment: DeployQA
+    environment: QA
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Deploying to QA"
+
+- stage: UAT
+  dependsOn: QA
+  jobs:
+  - deployment: DeployUAT
+    environment: UAT
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Deploying to UAT"
+
+- stage: PROD
+  dependsOn: UAT
+  jobs:
+  - deployment: DeployPROD
+    environment: PROD
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Deploying to PROD"
