@@ -6,7 +6,9 @@
     "dev": "dotenvx run -- pnpm -r --parallel dev",
     "dev:react": "dotenvx run -- pnpm --filter react dev",
     "dev:express": "dotenvx run -- pnpm --filter express dev",
-    "start": "dotenvx run -- node apps/express/dist/index.js"
+    "start": "dotenvx run -- node apps/express/dist/index.js",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.51.1",
